@@ -6,22 +6,30 @@ from paddle import Paddle
 from ball import Ball
 pygame.init()
 
+# Creating the screen and setting the icon and title
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Breakout")
 pygame.display.set_icon(pygame.Surface([32, 32]))
 
+# Creating the clock
 clock = pygame.time.Clock()
 
+# Making the mouse cursor invisable
 pygame.mouse.set_visible(False)
 
-level_list = [levels.level1()]
+# Creating a list of levels and setting the current level
+level_list = [levels.level1, levels.level2]
 levelno = 1
-current_level = level_list[levelno - 1]
+current_level = level_list[levelno - 1]()
 
+# Creating the paddle
 paddle = Paddle(pygame.mouse.get_pos()[0])
+
+# Creating the ball
 ball = Ball(random.randint(0, 800 - 10), random.randint(0, 600 - 10), current_level)
 ball.paddle = paddle
 
+# Quit game
 def terminate():
 	pygame.quit()
 	sys.exit()
@@ -42,11 +50,11 @@ while True:
 	paddle.update()
 	ball.update()
 	if len(current_level.brick_list) == 0:
-		if levelno >= len(level_list):
+		levelno += 1
+		if levelno > len(level_list):
 			terminate()
 		else:
-			levelno += 1
-			current_level = level_list[levelno]
+			current_level = level_list[levelno - 1]()
 			ball.level = current_level
 	pygame.display.update()
 	clock.tick(constants.FPS)

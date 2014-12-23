@@ -33,5 +33,15 @@ class level1(level):
 		ggggggggg
 		rrrrrrrrr
 		'''
-		x = y = 0
 		self.createLevel()
+
+class level2(level):
+	def __init__(self):
+		self.layout = '''
+		  wwwwww
+		 bbbbbbbb
+		 gggggggg
+		 rrrrrrrr
+		 '''
+		self.createLevel()
+
