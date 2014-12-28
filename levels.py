@@ -59,7 +59,7 @@ class level3(level):
                 ________ww_________
                 ____b_____b________
                 _____g____g_gg_____
-                __rrr--rr--rr______
+                __rrr__rr__rr______
                 '''
                 self.createLevel()
 
