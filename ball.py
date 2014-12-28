@@ -21,8 +21,8 @@ class Ball:
 		for brick in self.level.brick_list:
 			if self.rect.colliderect(brick.rect):
 				self.level.brick_list.remove(brick)
-				self.change_x *= -1
-				#self.change_y *= -1
+				#self.change_x *= -1
+				self.change_y *= -1
 				self.paddle.score += 1
 		if self.rect.colliderect(self.paddle.rect):
 			self.change_y *= -1

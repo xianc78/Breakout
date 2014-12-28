@@ -19,7 +19,7 @@ pygame.mouse.set_visible(False)
 
 # Creating a list of levels and setting the current level
 level_list = [levels.level1, levels.level2, levels.level3]
-levelno = 3
+levelno = 1
 current_level = level_list[levelno - 1]()
 
 # Creating the paddle
