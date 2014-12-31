@@ -27,7 +27,7 @@ current_level = level_list[levelno - 1]()
 paddle = Paddle(pygame.mouse.get_pos()[0])
 
 # Creating the ball
-ball = Ball(random.randint(0, 800 - 10), random.randint(0, 600 - 10), current_level)
+ball = Ball(random.randint(0, 800 - 10), random.randint(0, 300 - 10), current_level)
 ball.paddle = paddle
 
 '''
@@ -56,7 +56,7 @@ while True:
 	while paused:
 		for event in pygame.event.get():
 			if event.type == QUIT:
-				sys.functions.terminate()
+				sysfunctions.terminate()
 			elif event.type == KEYDOWN and event.key == K_ESCAPE:
 				paused = False
 	paddle.update()
