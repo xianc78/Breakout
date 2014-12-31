@@ -1,5 +1,6 @@
 import pygame, sys
 import constants
+import sysfunctions
 pygame.init()
 
 class Paddle:
@@ -19,5 +20,4 @@ class Paddle:
 		elif self.rect.x < 0:
 			self.rect.x = 0
 		if self.lives <= 0:
-                        pygame.quit()
-                        sys.exit()
+                        sysfunctions.terminate()

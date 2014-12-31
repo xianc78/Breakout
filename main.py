@@ -1,6 +1,7 @@
 import pygame, sys, random
 import constants
 import levels
+import sysfunctions
 from pygame.locals import *
 from paddle import Paddle
 from ball import Ball
@@ -29,11 +30,16 @@ paddle = Paddle(pygame.mouse.get_pos()[0])
 ball = Ball(random.randint(0, 800 - 10), random.randint(0, 600 - 10), current_level)
 ball.paddle = paddle
 
+'''
 # Quit game
 def terminate():
 	pygame.quit()
 	sys.exit()
+'''
 
+paused = False
+
+# Game loop
 while True:
 	pygame.display.set_caption("Breakout | Lives: " + str(paddle.lives))
 	screen.fill(constants.BLACK)
@@ -43,16 +49,22 @@ while True:
 		screen.blit(brick.image, (brick.rect.x, brick.rect.y))
 	for event in pygame.event.get():
 		if event.type == QUIT:
-			terminate()
+			sysfunctions.terminate()
 		elif event.type == KEYDOWN:
 			if event.key == K_ESCAPE:
-				terminate()
+				paused = True
+	while paused:
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				sys.functions.terminate()
+			elif event.type == KEYDOWN and event.key == K_ESCAPE:
+				paused = False
 	paddle.update()
 	ball.update()
 	if len(current_level.brick_list) == 0:
 		levelno += 1
 		if levelno > len(level_list):
-			terminate()
+			sysfunctions.terminate()
 		else:
 			current_level = level_list[levelno - 1]()
 			ball.level = current_level
