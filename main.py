@@ -2,6 +2,7 @@ import pygame, sys, random
 import constants
 import levels
 import sysfunctions
+import text
 from pygame.locals import *
 from paddle import Paddle
 from ball import Ball
@@ -38,6 +39,7 @@ def terminate():
 '''
 
 paused = False
+pauseText = text.pauseText()
 
 # Game loop
 while True:
@@ -54,11 +56,14 @@ while True:
 			if event.key == K_ESCAPE:
 				paused = True
 	while paused:
+		screen.blit(pauseText.text, pauseText.rect)
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				sysfunctions.terminate()
 			elif event.type == KEYDOWN and event.key == K_ESCAPE:
 				paused = False
+		pygame.display.update()
+
 	paddle.update()
 	ball.update()
 	if len(current_level.brick_list) == 0:
