@@ -28,7 +28,10 @@ class Ball:
 			self.change_y *= -1
 		if self.rect.y > constants.SCREEN_HEIGHT - self.rect.height:
 			self.paddle.lives -= 1
-			self.rect.x = random.randint(0, 790)
-			self.rect.y = random.randint(0, 300)
+			self.resetPosition()
 		elif self.rect.top < 0:
 			self.change_y *= -1
+
+	def resetPosition(self):
+		self.rect.x = random.randint(0, 790)
+		self.rect.y = random.randint(0, 300)

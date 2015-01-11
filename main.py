@@ -66,6 +66,7 @@ while True:
 
 	paddle.update()
 	ball.update()
+	# If all the bricks are hit, go to next level or end the game
 	if len(current_level.brick_list) == 0:
 		levelno += 1
 		if levelno > len(level_list):
@@ -73,5 +74,7 @@ while True:
 		else:
 			current_level = level_list[levelno - 1]()
 			ball.level = current_level
+			ball.resetPosition()
+	# Update the screen and clock
 	pygame.display.update()
 	clock.tick(constants.FPS)
