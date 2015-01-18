@@ -26,6 +26,7 @@ current_level = level_list[levelno - 1]()
 
 # Creating the paddle
 paddle = Paddle(pygame.mouse.get_pos()[0])
+paddle.screen = screen
 
 # Creating the ball
 ball = Ball(random.randint(0, 800 - 10), random.randint(0, 300 - 10), current_level)
@@ -55,6 +56,11 @@ while True:
 		elif event.type == KEYDOWN:
 			if event.key == K_ESCAPE:
 				paused = True
+			'''
+			# For debugging purposes
+			elif event.key == K_F1:
+				paddle.lives = 0
+			'''	
 	while paused:
 		screen.blit(pauseText.text, pauseText.rect)
 		for event in pygame.event.get():

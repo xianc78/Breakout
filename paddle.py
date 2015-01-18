@@ -1,7 +1,10 @@
 import pygame, sys
 import constants
 import sysfunctions
+from text import gameOverText
 pygame.init()
+
+gameOver = gameOverText()
 
 class Paddle:
 	def __init__(self, x):
@@ -14,10 +17,13 @@ class Paddle:
 		self.lives = 3
 
 	def update(self):
-		self.rect.x = pygame.mouse.get_pos()[0]
+		self.rect.x += pygame.mouse.get_rel()[0]
 		if self.rect.x > constants.SCREEN_WIDTH - self.rect.width:
 			self.rect.x = constants.SCREEN_WIDTH - self.rect.width
 		elif self.rect.x < 0:
 			self.rect.x = 0
 		if self.lives <= 0:
+			self.screen.blit(gameOver.text, gameOver.rect)
+			pygame.display.update()
+			pygame.time.wait(500)
                         sysfunctions.terminate()
