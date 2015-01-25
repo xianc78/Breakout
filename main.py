@@ -43,11 +43,13 @@ paused = False
 pauseText = text.pauseText()
 
 nextLevel = text.nextLevelText()
+LifeCounter = text.lifeCounter()
 
 # Game loop
 while True:
 	pygame.display.set_caption("Breakout | Lives: " + str(paddle.lives))
 	screen.fill(constants.BLACK)
+	screen.blit(LifeCounter.text, LifeCounter.rect)
 	screen.blit(paddle.image, (paddle.rect.x, paddle.rect.y))
 	screen.blit(ball.image, (ball.rect.x, ball.rect.y))
 	for brick in current_level.brick_list:
@@ -79,6 +81,7 @@ while True:
 
 	paddle.update()
 	ball.update()
+	LifeCounter.text = text.fontObj.render("Live(s): " + str(paddle.lives), True, constants.WHITE)
 	# If all the bricks are hit, go to next level or end the game
 	if len(current_level.brick_list) == 0:
 		levelno += 1
