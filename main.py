@@ -9,7 +9,7 @@ from ball import Ball
 pygame.init()
 
 # Creating the screen and setting the icon and title
-screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), FULLSCREEN)
 pygame.display.set_caption("Breakout")
 pygame.display.set_icon(pygame.Surface([32, 32]))
 
@@ -42,6 +42,8 @@ def terminate():
 paused = False
 pauseText = text.pauseText()
 
+nextLevel = text.nextLevelText()
+
 # Game loop
 while True:
 	pygame.display.set_caption("Breakout | Lives: " + str(paddle.lives))
@@ -55,6 +57,8 @@ while True:
 			sysfunctions.terminate()
 		elif event.type == KEYDOWN:
 			if event.key == K_ESCAPE:
+				sysfunctions.terminate()
+			elif event.key == K_p:
 				paused = True
 			'''
 			# For debugging purposes
@@ -66,8 +70,11 @@ while True:
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				sysfunctions.terminate()
-			elif event.type == KEYDOWN and event.key == K_ESCAPE:
-				paused = False
+			elif event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+					sysfunctions.terminate()
+				elif event.key == K_p:
+					paused = False
 		pygame.display.update()
 
 	paddle.update()
@@ -78,6 +85,9 @@ while True:
 		if levelno > len(level_list):
 			sysfunctions.terminate()
 		else:
+			screen.blit(nextLevel.text, nextLevel.rect)
+			pygame.display.update()
+			pygame.time.wait(500)
 			current_level = level_list[levelno - 1]()
 			ball.level = current_level
 			ball.resetPosition()
