@@ -12,6 +12,7 @@ pygame.init()
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), FULLSCREEN)
 pygame.display.set_caption("Breakout")
 pygame.display.set_icon(pygame.Surface([32, 32]))
+sysfunctions.screen = screen
 
 # Creating the clock
 clock = pygame.time.Clock()
@@ -59,7 +60,7 @@ while True:
 			sysfunctions.terminate()
 		elif event.type == KEYDOWN:
 			if event.key == K_ESCAPE:
-				sysfunctions.terminate()
+				screen = sysfunctions.toggleFullScreen()
 			elif event.key == K_p:
 				paused = True
 			'''
@@ -74,7 +75,7 @@ while True:
 				sysfunctions.terminate()
 			elif event.type == KEYDOWN:
 				if event.key == K_ESCAPE:
-					sysfunctions.terminate()
+					screen = sysfunctions.toggleFullScreen()
 				elif event.key == K_p:
 					paused = False
 		pygame.display.update()

@@ -17,7 +17,7 @@ class Paddle:
 		self.lives = 3
 
 	def update(self):
-		self.rect.x += pygame.mouse.get_rel()[0]
+		self.rect.x = pygame.mouse.get_pos()[0]
 		if self.rect.x > constants.SCREEN_WIDTH - self.rect.width:
 			self.rect.x = constants.SCREEN_WIDTH - self.rect.width
 		elif self.rect.x < 0:
