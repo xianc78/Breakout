@@ -1,4 +1,4 @@
-import pygame, sys, random
+import pygame, sys, random, platform
 import constants
 import levels
 import sysfunctions
@@ -9,7 +9,11 @@ from ball import Ball
 pygame.init()
 
 # Creating the screen and setting the icon and title
-screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), FULLSCREEN)
+if platform.system() == "Windows":
+	screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), FULLSCREEN)
+else:
+	screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+	pygame.display.toggle_fullscreen()
 pygame.display.set_caption("Breakout")
 pygame.display.set_icon(pygame.Surface([32, 32]))
 sysfunctions.screen = screen
@@ -60,7 +64,10 @@ while True:
 			sysfunctions.terminate()
 		elif event.type == KEYDOWN:
 			if event.key == K_ESCAPE:
-				screen = sysfunctions.toggleFullScreen()
+				if platform.system() == "Windows":
+					screen = sysfunctions.toggleFullScreen()
+				else:
+					pygame.display.toggle_fullscreen()
 			elif event.key == K_p:
 				paused = True
 			'''
@@ -75,7 +82,10 @@ while True:
 				sysfunctions.terminate()
 			elif event.type == KEYDOWN:
 				if event.key == K_ESCAPE:
-					screen = sysfunctions.toggleFullScreen()
+					if platform.system() == "Windows":
+						screen = sysfunctions.toggleFullScreen()
+					else:
+						pygame.display.toggle_fullscreen()
 				elif event.key == K_p:
 					paused = False
 		pygame.display.update()
