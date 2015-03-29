@@ -50,6 +50,17 @@ pauseText = text.pauseText()
 nextLevel = text.nextLevelText()
 LifeCounter = text.lifeCounter()
 
+def titleScreen():
+	titleText = text.titleText()
+	while True:
+		screen.blit(titleText.text, titleText.rect)
+		for event in pygame.event.get():
+			if event.type == KEYDOWN:
+				return None
+		pygame.display.update()
+
+titleScreen()
+
 # Game loop
 while True:
 	pygame.display.set_caption("Breakout | Lives: " + str(paddle.lives))

@@ -7,6 +7,7 @@ import pygame
 import constants
 
 fontObj = pygame.font.SysFont("arial", 32)
+fontObjLarge = pygame.font.SysFont("arial", 48)
 
 class textObj:
 	text = None
@@ -34,3 +35,9 @@ class lifeCounter(textObj):
 		self.text = fontObj.render("Live(s): ", True, constants.WHITE)
 		self.rect = self.text.get_rect()
 		self.rect.bottomleft = (0, constants.SCREEN_HEIGHT)
+
+class titleText(textObj):
+	def __init__(self):
+		self.text = fontObjLarge.render("Breakout", True, constants.WHITE)
+		self.rect = self.text.get_rect()
+		self.rect.center = (constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2)
