@@ -52,8 +52,10 @@ LifeCounter = text.lifeCounter()
 
 def titleScreen():
 	titleText = text.titleText()
+	enterText = text.enterText()
 	while True:
 		screen.blit(titleText.text, titleText.rect)
+		screen.blit(enterText.text, enterText.rect)
 		for event in pygame.event.get():
 			if event.type == KEYDOWN:
 				return None

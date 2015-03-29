@@ -8,6 +8,7 @@ import constants
 
 fontObj = pygame.font.SysFont("arial", 32)
 fontObjLarge = pygame.font.SysFont("arial", 48)
+fontObjSmall = pygame.font.SysFont("arial", 16)
 
 class textObj:
 	text = None
@@ -41,3 +42,9 @@ class titleText(textObj):
 		self.text = fontObjLarge.render("Breakout", True, constants.WHITE)
 		self.rect = self.text.get_rect()
 		self.rect.center = (constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2)
+
+class enterText(textObj):
+	def __init__(self):
+		self.text = fontObjSmall.render("Press any key to start", True, constants.WHITE)
+		self.rect = self.text.get_rect()
+		self.rect.midtop = (constants.SCREEN_WIDTH/2, (constants.SCREEN_HEIGHT/2) + 48)
